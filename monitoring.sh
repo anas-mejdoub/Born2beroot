@@ -18,5 +18,5 @@ wall << EOF
 #Connection TCP : $(netstat | grep ESTABLISHED | wc -l) ESTABLISHED
 #User log: $(who | awk '{print $1}' | sort -u| wc -l)
 #Network: IP $(hostname -I) $(ip a | grep ether | awk '{print $2}')
-#Sudo : $(cat /var/log/sudo/sudo.log | grep COMMAND | wc -l) cmd
+#Sudo : $(journalctl -q | grep sudo.*COMM | wc -l) cmd
 EOF
