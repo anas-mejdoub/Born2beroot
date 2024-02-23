@@ -3,7 +3,7 @@ arch=$(uname -a | awk '{gsub(/PREEMPT_DYNAMIC/, ""); print}')
 wall << EOF
 #Architecture: $(echo -n $arch)
 #CPU physical : $(lscpu | grep Socket | awk '{print $2}')
-#vCPU : $(grep -c ^processor /proc/cpuinfo)
+#vCPU : $(nproc)
 #Memory Usage : $(free -m | grep Mem | awk '{printf $3 "/" $2 "MB (%.2f%%)\n" ,($3/$2)*100}')
 #Disk Usage: $(df -m --total | grep total | awk '{printf $3 "/%.2fGb (%.2f)\n", $2/1024, ($3/$2)*100}')
 #CPU load: $(mpstat 1 1| tail -n 1 |  awk '{printf ("%.2f%%",100-$12)}')
