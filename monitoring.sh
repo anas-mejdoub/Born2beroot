@@ -8,9 +8,9 @@ wall << EOF
 #Disk Usage: $(df -m --total | grep total | awk '{printf $3 "/%.2fGb (%.2f)\n", $2/1024, ($3/$2)*100}')
 #CPU load: $(mpstat 1 1| tail -n 1 |  awk '{printf ("%.2f%%",100-$12)}')
 #Last boot: $(who | head -n 1 | awk '{print $3 " " $4}')
-#Lvm use: $(lsblk | awk '{print $6 }' |if  grep -q lvm;then echo "yes"; else echo "no";fi)
+#Lvm use: $(lsblk | awk '{print $6 }' |if  grep -q lvm;then echo "YES"; else echo "NO";fi)
 #Connection TCP : $(netstat | grep ESTABLISHED | wc -l) ESTABLISHED
 #User log: $(who | awk '{print $1}' | sort -u| wc -l)
 #Network: IP $(hostname -I) ($(ip a | grep ether | awk '{print $2}'))
-#Sudo : $(journalctl -q | grep sudo.*COMM | wc -l) cmd
+#Sudo : $(journalctl -q | grep sudo.*COMM | wc -l) CMD
 EOF
